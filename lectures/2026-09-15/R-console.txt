@@ -1,0 +1,221 @@
+R 4.6.1 started.
+
+R version 4.6.1 (2026-06-24) -- "Happy Hop"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin23
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+- Project '~/git/ubc/SPPH-381H/HDSx' loaded. [renv 1.2.4]
+> library(tidyverse)
+── Attaching core tidyverse packages ─────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.2.1     ✔ readr     2.2.0
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.3     ✔ tibble    3.3.1
+✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+✔ purrr     1.2.2     
+── Conflicts ───────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package to force all conflicts to become errors
+> library(tidytidy)
+Error in `library()`:
+! there is no package called ‘tidytidy’
+
+Show Traceback
+
+Fix
+
+Explain
+> candidate_paths <- c(
++   "examples/nhanes-equity/data/nhanes_equity_v6.csv",
++   "../../examples/nhanes-equity/data/nhanes_equity_v6.csv"
++ )
+> nhanes_path <- "examples/nhanes-equity/data/nhanes_equity_v6.csv"
+> nhanes_spine <- read_csv(nhanes_path, show_col_types = FALSE)
+> nhanes_path
+[1] "examples/nhanes-equity/data/nhanes_equity_v6.csv"
+> read_csv("examples/nhanes-equity/data/nhanes_equity_v6.csv", show_col_types = FALSE)
+# A tibble: 105,626 × 18
+   Cycle       BMI Weight Height Waist WeightMEC Strata   PSU Gender
+   <chr>     <dbl>  <dbl>  <dbl> <dbl>     <dbl>  <dbl> <dbl> <chr> 
+ 1 1999-2000  14.9   12.5   91.6  45.7    10983.      5     1 Female
+ 2 1999-2000  24.9   75.4  174    98      28325.      1     3 Male  
+ 3 1999-2000  17.6   32.9  137.   64.7    46192.      7     2 Female
+ 4 1999-2000  NA     13.3   NA    NA      10251.      2     1 Male  
+ 5 1999-2000  29.1   92.5  178.   99.9    99445.      8     2 Male  
+ 6 1999-2000  22.6   59.2  162    81.6    39657.      2     2 Female
+ 7 1999-2000  29.4   78    163.   90.7    25525.      4     2 Female
+ 8 1999-2000  15.5   40.7  162    64.1    31511.      6     1 Male  
+ 9 1999-2000  18.5   45.5  157.   64.6     7576.      9     2 Female
+10 1999-2000  30.9  112.   190.  108      22446.      7     1 Male  
+# ℹ 105,616 more rows
+# ℹ 9 more variables: Race <chr>, Education <chr>, Marital <chr>,
+#   Age <dbl>, PIR <dbl>, EducationClean <chr>, MaritalClean <chr>,
+#   IncomeGroup <chr>, WHtR <dbl>
+# ℹ Use `print(n = ...)` to see more rows
+> nhanes_spine = read_csv(nhanes_path, show_col_types = FALSE)
+> nhanes_spine
+# A tibble: 105,626 × 18
+   Cycle       BMI Weight Height Waist WeightMEC Strata   PSU Gender
+   <chr>     <dbl>  <dbl>  <dbl> <dbl>     <dbl>  <dbl> <dbl> <chr> 
+ 1 1999-2000  14.9   12.5   91.6  45.7    10983.      5     1 Female
+ 2 1999-2000  24.9   75.4  174    98      28325.      1     3 Male  
+ 3 1999-2000  17.6   32.9  137.   64.7    46192.      7     2 Female
+ 4 1999-2000  NA     13.3   NA    NA      10251.      2     1 Male  
+ 5 1999-2000  29.1   92.5  178.   99.9    99445.      8     2 Male  
+ 6 1999-2000  22.6   59.2  162    81.6    39657.      2     2 Female
+ 7 1999-2000  29.4   78    163.   90.7    25525.      4     2 Female
+ 8 1999-2000  15.5   40.7  162    64.1    31511.      6     1 Male  
+ 9 1999-2000  18.5   45.5  157.   64.6     7576.      9     2 Female
+10 1999-2000  30.9  112.   190.  108      22446.      7     1 Male  
+# ℹ 105,616 more rows
+# ℹ 9 more variables: Race <chr>, Education <chr>, Marital <chr>,
+#   Age <dbl>, PIR <dbl>, EducationClean <chr>, MaritalClean <chr>,
+#   IncomeGroup <chr>, WHtR <dbl>
+# ℹ Use `print(n = ...)` to see more rows
+> glimpse(nhanes_spine)
+Rows: 105,626
+Columns: 18
+$ Cycle          <chr> "1999-2000", "1999-2000", "1999-2000", "1999-2000", "1999-2000", "1999…
+$ BMI            <dbl> 14.90, 24.90, 17.63, NA, 29.10, 22.56, 29.39, 15.51, 18.48, 30.94, 22.…
+$ Weight         <dbl> 12.5, 75.4, 32.9, 13.3, 92.5, 59.2, 78.0, 40.7, 45.5, 111.8, 65.0, 99.…
+$ Height         <dbl> 91.6, 174.0, 136.6, NA, 178.3, 162.0, 162.9, 162.0, 156.9, 190.1, 171.…
+$ Waist          <dbl> 45.7, 98.0, 64.7, NA, 99.9, 81.6, 90.7, 64.1, 64.6, 108.0, 76.5, 112.8…
+$ WeightMEC      <dbl> 10982.899, 28325.385, 46192.257, 10251.260, 99445.066, 39656.600, 2552…
+$ Strata         <dbl> 5, 1, 7, 2, 8, 2, 4, 6, 9, 7, 1, 6, 13, 12, 11, 11, 5, 8, 13, 2, 3, 2,…
+$ PSU            <dbl> 1, 3, 2, 1, 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2…
+$ Gender         <chr> "Female", "Male", "Female", "Male", "Male", "Female", "Female", "Male"…
+$ Race           <chr> "Non-Hispanic Black", "Non-Hispanic White", "Non-Hispanic White", "Non…
+$ Education      <chr> NA, "College Grad", NA, NA, "College Grad", NA, "HS or Less", NA, NA, …
+$ Marital        <chr> NA, NA, NA, NA, "Married/Partner", "Never Married", "Married/Partner",…
+$ Age            <dbl> 2, 77, 10, 1, 49, 19, 59, 13, 11, 43, 15, 37, 70, 81, 38, 85, 2, 1, 0,…
+$ PIR            <dbl> 0.86, 5.00, 1.47, 0.57, 5.00, 1.21, NA, 0.53, NA, NA, 1.25, 4.93, 1.07…
+$ EducationClean <chr> NA, "College Grad", NA, NA, "College Grad", NA, "HS or Less", NA, NA, …
+$ MaritalClean   <chr> NA, NA, NA, NA, "Married/Partner", "Never Married", "Married/Partner",…
+$ IncomeGroup    <chr> "Low Income (<1.3)", "High Income (>3.5)", "Middle Income", "Low Incom…
+$ WHtR           <dbl> 0.4989083, 0.5632184, 0.4736457, NA, 0.5602916, 0.5037037, 0.5567833, …
+> candidate_paths <- c(
++   "examples/nhanes-equity/data/nhanes_equity_v6.csv",
++   "../../examples/nhanes-equity/data/nhanes_equity_v6.csv"
++ )
+> candidate_paths
+[1] "examples/nhanes-equity/data/nhanes_equity_v6.csv"      
+[2] "../../examples/nhanes-equity/data/nhanes_equity_v6.csv"
+> candidate_paths[1]
+[1] "examples/nhanes-equity/data/nhanes_equity_v6.csv"
+> candidate_paths[2]
+[1] "../../examples/nhanes-equity/data/nhanes_equity_v6.csv"
+> candidate_paths[3]
+[1] NA
+> file.exists(candidate_paths)
+[1]  TRUE FALSE
+> candidate_paths[file.exists(candidate_paths)]
+[1] "examples/nhanes-equity/data/nhanes_equity_v6.csv"
+> candidate_paths[file.exists(candidate_paths)][1]
+[1] "examples/nhanes-equity/data/nhanes_equity_v6.csv"
+> read_csv(candidate_paths[file.exists(candidate_paths)][1])
+Rows: 105626 Columns: 18
+── Column specification ───────────────────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (8): Cycle, Gender, Race, Education, Marital, EducationClean, MaritalClean, IncomeGroup
+dbl (10): BMI, Weight, Height, Waist, WeightMEC, Strata, PSU, Age, PIR, WHtR
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+# A tibble: 105,626 × 18
+   Cycle    BMI Weight Height Waist WeightMEC Strata   PSU Gender Race  Education Marital   Age
+   <chr>  <dbl>  <dbl>  <dbl> <dbl>     <dbl>  <dbl> <dbl> <chr>  <chr> <chr>     <chr>   <dbl>
+ 1 1999-…  14.9   12.5   91.6  45.7    10983.      5     1 Female Non-… NA        NA          2
+ 2 1999-…  24.9   75.4  174    98      28325.      1     3 Male   Non-… College … NA         77
+ 3 1999-…  17.6   32.9  137.   64.7    46192.      7     2 Female Non-… NA        NA         10
+ 4 1999-…  NA     13.3   NA    NA      10251.      2     1 Male   Non-… NA        NA          1
+ 5 1999-…  29.1   92.5  178.   99.9    99445.      8     2 Male   Non-… College … Marrie…    49
+ 6 1999-…  22.6   59.2  162    81.6    39657.      2     2 Female Othe… NA        Never …    19
+ 7 1999-…  29.4   78    163.   90.7    25525.      4     2 Female Non-… HS or Le… Marrie…    59
+ 8 1999-…  15.5   40.7  162    64.1    31511.      6     1 Male   Non-… NA        NA         13
+ 9 1999-…  18.5   45.5  157.   64.6     7576.      9     2 Female Non-… NA        NA         11
+10 1999-…  30.9  112.   190.  108      22446.      7     1 Male   Non-… HS or Le… Previo…    43
+# ℹ 105,616 more rows
+# ℹ 5 more variables: PIR <dbl>, EducationClean <chr>, MaritalClean <chr>, IncomeGroup <chr>,
+#   WHtR <dbl>
+# ℹ Use `print(n = ...)` to see more rows
+> nhanes_path <- candidate_paths[file.exists(candidate_paths)][1]
+> nhanes_path
+[1] "examples/nhanes-equity/data/nhanes_equity_v6.csv"
+> stop("i have stopped")
+Error:
+! i have stopped
+
+Fix
+
+Explain
+> stop("Could not find examples/nhanes-equity/data/nhanes_equity_v6.csv")
+Error:
+! Could not find examples/nhanes-equity/data/nhanes_equity_v6.csv
+
+Fix
+
+Explain
+> if (is.na(nhanes_path)) {
++   stop("Could not find examples/nhanes-equity/data/nhanes_equity_v6.csv")
++ }
+> is.na(nhanes_path)
+[1] FALSE
+> if (is.na(nhanes_path)) {
++   stop("Could not find examples/nhanes-equity/data/nhanes_equity_v6.csv")
++ }
+> if (FALSE) {stop("hello")}
+> if (TURE) {stop("hello")}
+Error:
+! object 'TURE' not found
+
+Fix
+
+Explain
+> summary(nhanes_spine)
+       Cycle             BMI             Weight           Height          Waist       
+ Length   :105626   Min.   :  7.99   Min.   :  2.40   Min.   : 78.3   Min.   : 32.00  
+ N.unique :    11   1st Qu.: 19.88   1st Qu.: 39.90   1st Qu.:150.9   1st Qu.: 71.60  
+ N.blank  :     0   Median : 24.90   Median : 65.50   Median :162.3   Median : 88.00  
+ Min.nchar:     9   Mean   : 25.65   Mean   : 62.52   Mean   :156.4   Mean   : 87.14  
+ Max.nchar:     9   3rd Qu.: 30.00   3rd Qu.: 83.10   3rd Qu.:171.4   3rd Qu.:102.30  
+                    Max.   :130.21   Max.   :371.00   Max.   :204.5   Max.   :187.00  
+                    NAs    :9356     NAs    :1690     NAs    :8888    NAs    :12737   
+   WeightMEC            Strata            PSU             Gender              Race       
+ Min.   :   980.3   Min.   :  1.00   Min.   :1.00   Length   :105626   Length   :105626  
+ 1st Qu.: 11007.1   1st Qu.: 39.00   1st Qu.:1.00   N.unique :     2   N.unique :     5  
+ Median : 20954.4   Median : 79.00   Median :2.00   N.blank  :     0   N.blank  :     0  
+ Mean   : 31348.2   Mean   : 81.57   Mean   :1.52   Min.nchar:     4   Min.nchar:    14  
+ 3rd Qu.: 39325.8   3rd Qu.:120.00   3rd Qu.:2.00   Max.nchar:     6   Max.nchar:    35  
+ Max.   :419762.8   Max.   :187.00   Max.   :3.00                                        
+                                                                                         
+     Education           Marital            Age             PIR          EducationClean  
+ Length   :105626   Length   :105626   Min.   : 0.00   Min.   :0.000   Length   :105626  
+ N.unique :     3   N.unique :     3   1st Qu.:10.00   1st Qu.:0.950   N.unique :     3  
+ N.blank  :     0   N.blank  :     0   Median :25.00   Median :1.830   N.blank  :     0  
+ Min.nchar:    10   Min.nchar:    13   Mean   :31.67   Mean   :2.301   Min.nchar:    10  
+ Max.nchar:    12   Max.nchar:    18   3rd Qu.:53.00   3rd Qu.:3.630   Max.nchar:    12  
+ NAs      : 47251   NAs      : 46961   Max.   :85.00   Max.   :5.000   NAs      : 47251  
+                                                       NAs    :9415                      
+    MaritalClean       IncomeGroup          WHtR       
+ Length   :105626   Length   :105626   Min.   :0.2408  
+ N.unique :     3   N.unique :     3   1st Qu.:0.4743  
+ N.blank  :     0   N.blank  :     0   Median :0.5406  
+ Min.nchar:    13   Min.nchar:    13   Mean   :0.5533  
+ Max.nchar:    18   Max.nchar:    18   3rd Qu.:0.6171  
+ NAs      : 46961   NAs      :  9415   Max.   :1.1371  
+                                       NAs    :12979   
+>
