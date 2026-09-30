@@ -1,0 +1,2 @@
+# If port 8000 doesn't show up in the Ports tab: open a new terminal (+) and run
+python3 -m http.server 8000 --bind 127.0.0.1
