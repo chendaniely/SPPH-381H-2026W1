@@ -4,11 +4,28 @@
 skill (`make notes`, `make notes-force`, or `class_notes.py generate --only <folder>`).
 Students read this repo, and they are novice coders.
 
+## Textbook chapters (`materials.md`)
+
+The course textbook is HDSx: published at <https://ehsanx.github.io/HDSx/>, source in
+`ehsanx/HDSx` (Quarto book, one folder per week under `weeks/`). When Daniel says a
+session used a week's chapters, write them to that session's `materials.md`. Get each
+chapter's `.qmd` with `gh api`, in the order `_quarto.yml` lists them, plus any assignment
+README the week links to. Then:
+
+- Keep the text, tables and code. Drop HTML comments, `AI-EDIT` markers, video embeds
+  and `#|` chunk options. Inline any `{{< include >}}` snippets.
+- Turn each heading into a link to its section, taking the ids from the published page's
+  `<section id="…">`. Pandoc keeps dots in ids, e.g. `#create-helpers.py`.
+- Turn links between chapters into published `.html` URLs.
+- State the source commit in the file's opening lines.
+
+`lectures/2026-10-13/materials.md` (Week 5) is the worked example.
+
 ## Hand additions to generated notes
 
 - The generator runs `claude -p --setting-sources ""`, so it never sees this file. It
-  reads only `transcript-plaud.md`, `history.*` and `terminal.txt` / `*console*.txt`.
-  Screenshots and any other files in a session folder are ignored.
+  reads only `transcript-plaud.md`, `history.*`, `terminal.txt` / `*console*.txt` and
+  `materials.md`. Screenshots and any other files in a session folder are ignored.
 - Anything added to a `notes-class-*.md` file by hand is lost when that session is
   regenerated. That includes `make notes-force`, which rebuilds every session. After
   regenerating a session listed below, re-apply its additions, then run

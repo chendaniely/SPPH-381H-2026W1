@@ -8,7 +8,7 @@ the result — so an improvement you make in week 6 also improves the notes for 
 
 | File | What it is |
 |---|---|
-| [`prompt-notes.md`](prompt-notes.md) | **The prompt.** Every word of it is sent to the model, followed by a session's transcript and command logs. This is the file we edit together. |
+| [`prompt-notes.md`](prompt-notes.md) | **The prompt.** Every word of it is sent to the model, followed by a session's transcript, command logs and textbook chapters. This is the file we edit together. |
 | `prompt-notes-<name>.md` | Optional variants, for trying an idea next to the main prompt (see below). |
 | `README-prompt.md` | This file: how it all works, and how to change it. |
 | [`Makefile`](Makefile) | Shortcuts for running the generator. |
@@ -24,6 +24,7 @@ as `-lecture` or `-lab` when there were two classes that day:
 | `transcript-plaud.md` | the transcript: machine-generated, lightly cleaned up by Plaud ← input |
 | `history.R` | the R code run live in class ← input, optional |
 | `R-console.txt` | that code *and* its output, from the R console ← input, optional |
+| `materials.md` | the [course textbook](https://ehsanx.github.io/HDSx/) chapters the session worked from, with links to each section ← input, optional |
 | `notes-plaud.md` | Plaud's own AI notes — the baseline to beat |
 | `notes-class-main--<model>.md` | what `prompt-notes.md` produced, and which model wrote it ← output |
 
@@ -35,6 +36,11 @@ questions people asked.
 The command logs make a big difference. Speech is a bad way to record a command: a
 microphone hears "read CSV the path", and the details disappear. When a session folder has a
 command log, the prompt treats it as the authority on what was actually typed.
+
+The textbook does the same for code copied from it in class. When a session folder has
+`materials.md`, the notes take that code exactly as the book has it, link each piece
+back to its section, and end with a list of the sections the class used. The rest of the
+book stays out: the notes cover only what was actually done in class.
 
 ## How to propose a change
 
@@ -78,8 +84,8 @@ python3 $cn generate --only lectures/2026-09-15 --force --model sonnet
 python3 $cn payload --only lectures/2026-09-15 > message.txt
 ```
 
-`payload` prints the exact message the model receives — the prompt, the transcript and the
-logs — so you can take a session to any other tool or model and do your own thing with it.
+`payload` prints the exact message the model receives — the prompt, the transcript, the
+logs and the textbook chapters — so you can take a session to any other tool or model and do your own thing with it.
 No Claude subscription? Paste that message into GitHub Copilot Chat or another assistant.
 The `Makefile` wraps the common runs (`make notes`, `make notes-force`); point it at your
 copy with `CLASS_NOTES=~/git/skills/class-notes/scripts/class_notes.py`.
